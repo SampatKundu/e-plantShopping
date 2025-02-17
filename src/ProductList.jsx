@@ -14,11 +14,13 @@ function ProductList() {
 
     const handleAddToCart = (index) => {
         console.log("insidehandleAddtoCart")
+        setAddedToCart({ ...addedToCart, [index.name]: true });
         dispatch(addItem(index)); // Dispatch the addItem action with the plant
-        setAddedToCart(prevState => ({
-            ...prevState,
-            [index.name]: true // Set plant name as key to true
-        }));
+
+        // setAddedToCart(prevState => ({
+        //     ...prevState,
+        //     [index.name]: true // Set plant name as key to true
+        // }));
         console.log("insidehandleAddtoCart with plant name"+ index.name)
 
       };
@@ -327,9 +329,11 @@ const handlePlantsClick = (e) => {
                 
                 <p>{plant.description}</p>
                 <p className="product-price">Cost: {plant.cost}</p>
-                <button className={`product-button ${addedToCart[plant.name] ? 'added-to-cart' : ''}`}                
+                {/* <button className={`product-button ${addedToCart[plant.name] ? 'added-to-cart' : ''}`}                 */}
+                <button className={`product-button ${cartItems.find((item) => item.name === plant.name) &&"added-to-cart"}`}
                                     onClick={() => handleAddToCart(plant)}
-                                    disabled={addedToCart[plant.name]} // Disable the button if already added
+                                    // disabled={addedToCart[plant.name]} // Disable the button if already added
+                                    disabled={cartItems.find((item) => item.name === plant.name)}
                 >
                 {addedToCart[plant.name] ? 'Added to Cart' : 'Add to Cart'}
                     </button>                
