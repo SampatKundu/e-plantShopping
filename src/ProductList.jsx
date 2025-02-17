@@ -322,9 +322,9 @@ const handlePlantsClick = (e) => {
             {category.plants.map((plant, plantIndex) => (
                 <div className="product-card" key={plantIndex}>
                 <h3 className="product-title">{plant.name}</h3>
-                <div className="product-image">   
-                <img src={plant.image} alt={plant.name} />
-                </div>
+                <img className="product-image"  
+                 src={plant.image} alt={plant.name + " plant"} />
+                
                 <p>{plant.description}</p>
                 <p className="product-price">Cost: {plant.cost}</p>
                 <button className={`product-button ${addedToCart[plant.name] ? 'added-to-cart' : ''}`}                
